@@ -21,7 +21,7 @@ export default function ChatGPT({
     <Menu
       value={model ?? ''}
       setValue={setOption('model')}
-      availableValues={models}
+      availableValues={gpt-4o-mini}
       showAbove={showAbove}
       showLabel={false}
       className={cn(

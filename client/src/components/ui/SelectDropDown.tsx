@@ -109,7 +109,7 @@ function SelectDropDown({
   return (
     <div className={cn('flex items-center justify-center gap-2 ', containerClassName ?? '')}>
       <div className={cn('relative w-full', subContainerClassName ?? '')}>
-        <Listbox value={value} onChange={setValue} disabled={disabled}>
+        <Listbox value={value} onChange={setValue} disabled={true}>
           {({ open }) => (
             <>
                 {' '}

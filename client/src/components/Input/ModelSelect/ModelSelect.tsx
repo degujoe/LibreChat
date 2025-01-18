@@ -2,15 +2,9 @@ import type { TConversation } from 'librechat-data-provider';
 import type { TSetOption } from '~/common';
 import { SelectDropDown } from '~/components/ui';
 
-type TGoogleProps = {
-  showExamples: boolean;
-  isCodeChat: boolean;
-};
-
 type TSelectProps = {
   conversation: TConversation | null;
   setOption: TSetOption;
-  extraProps?: TGoogleProps;
   showAbove?: boolean;
   popover?: boolean;
 };
@@ -29,17 +23,21 @@ export default function ModelSelect({
     { id: "history", name: "Edexcel GCSE History" }
   ];
 
-  // Get selected subject or default to "maths"
+  // Get the currently selected subject, defaulting to "maths"
   const selectedSubject = conversation?.subject || "maths";
 
   return (
-    <SelectDropDown
-      value={selectedSubject}
-      setValue={(value) => setOption("subject", value)} // Fixes state update
-      availableValues={subjectOptions.map(subject => subject.name)}
-      showAbove={showAbove}
-      showLabel={false}
-    />
+    <div className="relative z-50 w-full">
+      <SelectDropDown
+        value={selectedSubject}
+        setValue={(value) => setOption("subject", value)} // ✅ Fix state update
+        availableValues={subjectOptions.map(subject => subject.name)}
+        showAbove={showAbove}
+        showLabel={false}
+        className="cursor-pointer"
+      />
+    </div>
   );
 }
+
 

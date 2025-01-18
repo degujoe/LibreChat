@@ -1,28 +1,51 @@
-import { SelectDropDown } from '~/components/ui';
+import { useGetModelsQuery } from 'librechat-data-provider/react-query';
+import type { TConversation } from 'librechat-data-provider';
+import type { TSetOption } from '~/common';
+import { multiChatOptions } from './options';
 
-export default function ModelSelect() {
-  // Define subjects (static list)
-  const subjectOptions = [
-    { id: "pe", name: "OCR GCSE PE" },
-    { id: "maths", name: "OCR A-Level Maths" },
-    { id: "science", name: "AQA GCSE Science" },
-    { id: "history", name: "Edexcel GCSE History" }
-  ];
+type TGoogleProps = {
+  showExamples: boolean;
+  isCodeChat: boolean;
+};
 
-  // Default to showing "OCR A-Level Maths" (or any other default subject)
-  const defaultSubject = "OCR A-Level Maths";
+type TSelectProps = {
+  conversation: TConversation | null;
+  setOption: TSetOption;
+  extraProps?: TGoogleProps;
+  showAbove?: boolean;
+  popover?: boolean;
+};
+
+export default function ModelSelect({
+  conversation,
+  setOption,
+  popover = false,
+  showAbove = true,
+}: TSelectProps) {
+  const modelsQuery = useGetModelsQuery();
+
+  if (!conversation?.endpoint) {
+    return null;
+  }
+
+  const { endpoint: _endpoint, endpointType } = conversation;
+  const models = modelsQuery?.data?.[_endpoint] ?? [];
+  const endpoint = endpointType ?? _endpoint;
+
+  const OptionComponent = multiChatOptions[endpoint];
+
+  if (!OptionComponent) {
+    return null;
+  }
 
   return (
-    <div className="relative z-50 w-full">
-      <SelectDropDown
-        value={defaultSubject} // Always show the default subject
-        setValue={() => {}} // Do nothing when user selects a new one
-        availableValues={subjectOptions.map(subject => subject.name)}
-        showAbove={true}
-        showLabel={false}
-        className="cursor-pointer"
-      />
-    </div>
+    <OptionComponent
+      conversation={conversation}
+      setOption={setOption}
+      models={models}
+      showAbove={showAbove}
+      popover={popover}
+    />
   );
 }
 

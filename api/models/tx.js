@@ -68,43 +68,9 @@ const bedrockValues = {
  * The rates are 1 USD per 1M tokens.
  * @type {Object.<string, {prompt: number, completion: number}>}
  */
-const tokenValues = Object.assign(
-  {
-    '8k': { prompt: 30, completion: 60 },
-    '32k': { prompt: 60, completion: 120 },
-    '4k': { prompt: 1.5, completion: 2 },
-    '16k': { prompt: 3, completion: 4 },
-    'gpt-3.5-turbo-1106': { prompt: 1, completion: 2 },
-    'o1-preview': { prompt: 15, completion: 60 },
-    'o1-mini': { prompt: 3, completion: 12 },
-    o1: { prompt: 15, completion: 60 },
-    'gpt-4o-mini': { prompt: 0.15, completion: 0.6 },
-    'gpt-4o': { prompt: 2.5, completion: 10 },
-    'gpt-4o-2024-05-13': { prompt: 5, completion: 15 },
-    'gpt-4-1106': { prompt: 10, completion: 30 },
-    'gpt-3.5-turbo-0125': { prompt: 0.5, completion: 1.5 },
-    'claude-3-opus': { prompt: 15, completion: 75 },
-    'claude-3-sonnet': { prompt: 3, completion: 15 },
-    'claude-3-5-sonnet': { prompt: 3, completion: 15 },
-    'claude-3.5-sonnet': { prompt: 3, completion: 15 },
-    'claude-3-5-haiku': { prompt: 0.8, completion: 4 },
-    'claude-3.5-haiku': { prompt: 0.8, completion: 4 },
-    'claude-3-haiku': { prompt: 0.25, completion: 1.25 },
-    'claude-2.1': { prompt: 8, completion: 24 },
-    'claude-2': { prompt: 8, completion: 24 },
-    'claude-instant': { prompt: 0.8, completion: 2.4 },
-    'claude-': { prompt: 0.8, completion: 2.4 },
-    'command-r-plus': { prompt: 3, completion: 15 },
-    'command-r': { prompt: 0.5, completion: 1.5 },
-    /* cohere doesn't have rates for the older command models,
-  so this was from https://artificialanalysis.ai/models/command-light/providers */
-    command: { prompt: 0.38, completion: 0.38 },
-    'gemini-2.0': { prompt: 0, completion: 0 }, // https://ai.google.dev/pricing
-    'gemini-1.5': { prompt: 7, completion: 21 }, // May 2nd, 2024 pricing
-    gemini: { prompt: 0.5, completion: 1.5 }, // May 2nd, 2024 pricing
-  },
-  bedrockValues,
-);
+const tokenValues = {
+  'gpt-4o-mini': { prompt: 0.15, completion: 0.6 }
+};
 
 /**
  * Mapping of model token sizes to their respective multipliers for cached input, read and write.
@@ -128,48 +94,7 @@ const cacheTokenValues = {
  * @returns {string|undefined} The key corresponding to the model name, or undefined if no match is found.
  */
 const getValueKey = (model, endpoint) => {
-  const modelName = matchModelName(model, endpoint);
-  if (!modelName) {
-    return undefined;
-  }
-
-  if (modelName.includes('gpt-3.5-turbo-16k')) {
-    return '16k';
-  } else if (modelName.includes('gpt-3.5-turbo-0125')) {
-    return 'gpt-3.5-turbo-0125';
-  } else if (modelName.includes('gpt-3.5-turbo-1106')) {
-    return 'gpt-3.5-turbo-1106';
-  } else if (modelName.includes('gpt-3.5')) {
-    return '4k';
-  } else if (modelName.includes('o1-preview')) {
-    return 'o1-preview';
-  } else if (modelName.includes('o1-mini')) {
-    return 'o1-mini';
-  } else if (modelName.includes('o1')) {
-    return 'o1';
-  } else if (modelName.includes('gpt-4o-2024-05-13')) {
-    return 'gpt-4o-2024-05-13';
-  } else if (modelName.includes('gpt-4o-mini')) {
-    return 'gpt-4o-mini';
-  } else if (modelName.includes('gpt-4o')) {
-    return 'gpt-4o';
-  } else if (modelName.includes('gpt-4-vision')) {
-    return 'gpt-4-1106';
-  } else if (modelName.includes('gpt-4-1106')) {
-    return 'gpt-4-1106';
-  } else if (modelName.includes('gpt-4-0125')) {
-    return 'gpt-4-1106';
-  } else if (modelName.includes('gpt-4-turbo')) {
-    return 'gpt-4-1106';
-  } else if (modelName.includes('gpt-4-32k')) {
-    return '32k';
-  } else if (modelName.includes('gpt-4')) {
-    return '8k';
-  } else if (tokenValues[modelName]) {
-    return modelName;
-  }
-
-  return undefined;
+  return "gpt-4o-mini"; // Force all subjects to use GPT-4o Mini
 };
 
 /**

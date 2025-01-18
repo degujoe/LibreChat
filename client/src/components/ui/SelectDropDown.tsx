@@ -112,13 +112,6 @@ function SelectDropDown({
         <Listbox value={value} onChange={setValue} disabled={disabled}>
           {({ open }) => (
             <>
-              <ListboxButton
-                data-testid="select-dropdown-button"
-                className={cn(
-                  'relative flex w-full cursor-default flex-col rounded-md border border-black/10 bg-white py-2 pl-3 pr-10 text-left disabled:bg-white dark:border-gray-600 dark:bg-gray-700 sm:text-sm',
-                  className ?? '',
-                )}
-              >
                 {' '}
                 {showLabel && (
                   <Label

@@ -1,21 +1,7 @@
-import type { TConversation } from 'librechat-data-provider';
-import type { TSetOption } from '~/common';
 import { SelectDropDown } from '~/components/ui';
 
-type TSelectProps = {
-  conversation: TConversation | null;
-  setOption: TSetOption;
-  showAbove?: boolean;
-  popover?: boolean;
-};
-
-export default function ModelSelect({
-  conversation,
-  setOption,
-  popover = false,
-  showAbove = true,
-}: TSelectProps) {
-  // Define subject options instead of AI models
+export default function ModelSelect() {
+  // Define subjects (static list)
   const subjectOptions = [
     { id: "pe", name: "OCR GCSE PE" },
     { id: "maths", name: "OCR A-Level Maths" },
@@ -23,21 +9,22 @@ export default function ModelSelect({
     { id: "history", name: "Edexcel GCSE History" }
   ];
 
-  // Get the currently selected subject, defaulting to "maths"
-  const selectedSubject = conversation?.subject || "maths";
+  // Default to showing "OCR A-Level Maths" (or any other default subject)
+  const defaultSubject = "OCR A-Level Maths";
 
   return (
     <div className="relative z-50 w-full">
       <SelectDropDown
-        value={selectedSubject}
-        setValue={(value) => setOption("subject", value)} // ✅ Fix state update
+        value={defaultSubject} // Always show the default subject
+        setValue={() => {}} // Do nothing when user selects a new one
         availableValues={subjectOptions.map(subject => subject.name)}
-        showAbove={showAbove}
+        showAbove={true}
         showLabel={false}
         className="cursor-pointer"
       />
     </div>
   );
 }
+
 
 

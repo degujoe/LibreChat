@@ -39,8 +39,7 @@ export default function Footer({ className }: { className?: string }) {
       ? config.customFooter
       : '[Tutornator ' +
         Constants.VERSION +
-        '](https://librechat.ai) - ' +
-        localize('com_ui_latest_footer')
+        '](https://librechat.ai) - Tutoring For Everyone'
   ).split('|');
 
   useEffect(() => {

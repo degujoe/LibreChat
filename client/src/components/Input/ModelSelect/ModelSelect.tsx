@@ -28,23 +28,23 @@ export default function ModelSelect({
     return null;
   }
 
-  const { endpoint: _endpoint, endpointType } = conversation;
-  const models = modelsQuery?.data?.[_endpoint] ?? [];
-  const endpoint = endpointType ?? _endpoint;
+  const subjectOptions = [
+  { id: "pe", name: "OCR GCSE PE" },
+  { id: "maths", name: "OCR A-Level Maths" },
+  { id: "science", name: "AQA GCSE Science" },
+  { id: "history", name: "Edexcel GCSE History" }
+];
 
-  const OptionComponent = multiChatOptions[endpoint];
+const selectedSubject = conversation.subject || "maths"; // Default subject
 
-  if (!OptionComponent) {
-    return null;
-  }
 
   return (
-    <OptionComponent
-      conversation={conversation}
-      setOption={setOption}
-      models={models}
-      showAbove={showAbove}
-      popover={popover}
-    />
+    <SelectDropDown
+  value={selectedSubject}
+  setValue={setOption("subject")}
+  availableValues={subjectOptions.map(subject => subject.name)}
+  showAbove={showAbove}
+  showLabel={false}
+/>
   );
 }

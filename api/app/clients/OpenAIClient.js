@@ -89,11 +89,11 @@ class OpenAIClient extends BaseClient {
 
     this.modelOptions = Object.assign(
       {
-        model: openAISettings.model.default,
+        model: 'gpt-4o-mini', // Force the model
       },
       this.modelOptions,
       this.options.modelOptions,
-    );
+    ); 
 
     this.defaultVisionModel = this.options.visionModel ?? 'gpt-4-vision-preview';
     if (typeof this.options.attachments?.then === 'function') {

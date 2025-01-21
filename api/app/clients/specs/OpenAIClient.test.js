@@ -143,7 +143,7 @@ describe('OpenAIClient', () => {
     getLogStores.mockReturnValue(mockCache);
   });
   let client;
-  const model = 'gpt-4';
+  const model = 'gpt-4o-mini';
   const parentMessageId = '1';
   const messages = [
     { role: 'user', sender: 'User', text: 'Hello', messageId: parentMessageId },

@@ -121,6 +121,7 @@ test.describe('Messaging suite', () => {
 
     await page.locator('#new-conversation-menu').click();
     await page.locator(`#${endpoint}`).click();
+    await page.click('button[data-testid="select-dropdown-button"]:has-text("Model:")');
     await page.getByRole('option', { name: 'gpt-3.5-turbo', exact: true }).click();
     await page.locator('form').getByRole('textbox').click();
     await page.locator('form').getByRole('textbox').fill(message);

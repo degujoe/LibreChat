@@ -154,7 +154,7 @@ export default function ModelSpecsMenu({ modelSpecs }: { modelSpecs?: TModelSpec
               className="models-scrollbar mt-2 max-h-[65vh] min-w-[340px] max-w-xs overflow-y-auto rounded-lg border border-gray-100 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-700 dark:text-white lg:max-h-[75vh]"
             >
               <ModelSpecs
-                specs={modelSpecs}
+                specs={modelSpecs.filter((spec) => spec.name === 'gpt-4o-mini')}  // Only show gpt-4o-mini
                 selected={selected}
                 setSelected={onSelectSpec}
                 endpointsConfig={endpointsConfig}

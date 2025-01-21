@@ -50,65 +50,6 @@ function MultiSelectPop({
     <Root>
       <div className={cn('flex items-center justify-center gap-2', containerClassName ?? '')}>
         <div className="relative">
-          <Trigger asChild>
-            <button
-              data-testid="select-dropdown-button"
-              className={cn(
-                'relative flex flex-col rounded-md border border-black/10 bg-white py-2 pl-3 pr-10 text-left focus:outline-none focus:ring-0 focus:ring-offset-0 dark:border-gray-700 dark:bg-gray-800 dark:bg-gray-800 sm:text-sm',
-                'pointer-cursor font-normal',
-                'hover:bg-gray-50 radix-state-open:bg-gray-50 dark:hover:bg-gray-700 dark:radix-state-open:bg-gray-700',
-              )}
-            >
-              {' '}
-              {showLabel && (
-                <label className="block text-xs text-gray-700 dark:text-gray-500 ">{title}</label>
-              )}
-              <span className="inline-flex" id={excludeIds[2]}>
-                <span
-                  className={cn(
-                    'flex h-6 items-center gap-1 text-sm text-gray-800 dark:text-white',
-                    !showLabel ? 'text-xs' : '',
-                  )}
-                >
-                  {/* {!showLabel && title.length > 0 && (
-                    <span className="text-xs text-gray-700 dark:text-gray-500">{title}:</span>
-                  )} */}
-                  <span className="flex items-center gap-1 ">
-                    <div className="flex gap-1">
-                      {value.length === 0 && 'None selected'}
-                      {value.map((v, i) => (
-                        <div key={i} className="relative">
-                          {v.icon ? (
-                            <img src={v.icon} alt={`${v} logo`} className="icon-lg rounded-sm" />
-                          ) : (
-                            <Wrench className="icon-lg rounded-sm bg-white" />
-                          )}
-                          <div className="absolute inset-0 rounded-sm ring-1 ring-inset ring-black/10" />
-                        </div>
-                      ))}
-                    </div>
-                  </span>
-                </span>
-              </span>
-              <span className="absolute inset-y-0 right-0 flex items-center pr-2">
-                <svg
-                  stroke="currentColor"
-                  fill="none"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-4 w-4  text-gray-400"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style={showAbove ? { transform: 'scaleY(-1)' } : {}}
-                >
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </span>
-            </button>
-          </Trigger>
           <Portal>
             <Content
               side="bottom"

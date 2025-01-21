@@ -56,53 +56,6 @@ function SelectDropDownPop({
     <Root>
       <div className={'flex items-center justify-center gap-2 '}>
         <div className={'relative w-full'}>
-          <Trigger asChild>
-            <button
-              data-testid="select-dropdown-button"
-              className={cn(
-                'pointer-cursor relative flex flex-col rounded-lg border border-black/10 bg-white py-2 pl-3 pr-10 text-left focus:ring-0 focus:ring-offset-0 dark:border-gray-700 dark:bg-gray-800 sm:text-sm',
-                'hover:bg-gray-50 radix-state-open:bg-gray-50 dark:hover:bg-gray-700 dark:radix-state-open:bg-gray-700',
-              )}
-              aria-label={`Select ${title}`}
-              aria-haspopup="false"
-            >
-              {' '}
-              {showLabel && (
-                <label className="block text-xs text-gray-700 dark:text-gray-500 ">{title}</label>
-              )}
-              <span className="inline-flex w-full ">
-                <span
-                  className={cn(
-                    'flex h-6 items-center gap-1  text-sm text-gray-800 dark:text-white',
-                    !showLabel ? 'text-xs' : '',
-                    'min-w-[75px] font-normal',
-                  )}
-                >
-                  {/* {!showLabel && !emptyTitle && (
-                    <span className="text-xs text-gray-700 dark:text-gray-500">{title}:</span>
-                  )} */}
-                  {typeof value !== 'string' && value ? value.label ?? '' : value ?? ''}
-                </span>
-              </span>
-              <span className="absolute inset-y-0 right-0 flex items-center pr-2">
-                <svg
-                  stroke="currentColor"
-                  fill="none"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-4 w-4  text-gray-400"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style={showAbove ? { transform: 'scaleY(-1)' } : {}}
-                >
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </span>
-            </button>
-          </Trigger>
           <Portal>
             <Content
               side="bottom"

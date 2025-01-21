@@ -89,7 +89,7 @@ function SelectDropDown({
     title = localize('com_ui_model');
   }
 
-  const values = availableValues ?? [];
+  const values = ['gpt-4o-mini']; // Force only gpt-4o-mini
 
   // Detemine if we should to convert this component into a searchable select.  If we have enough elements, a search
   // input will appear near the top of the menu, allowing correct filtering of different model menu items. This will

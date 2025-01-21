@@ -50,7 +50,7 @@ function SelectDropDownPop({
     availableOptions: availableValues,
   });
   const hasSearchRender = Boolean(searchRender);
-  const options = hasSearchRender ? filteredValues : availableValues;
+  const options = ['gpt-4o-mini']; // Ensure only this model is selectable
 
   return (
     <Root>

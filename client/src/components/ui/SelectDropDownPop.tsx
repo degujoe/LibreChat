@@ -56,6 +56,16 @@ function SelectDropDownPop({
     <Root>
       <div className={'flex items-center justify-center gap-2 '}>
         <div className={'relative w-full'}>
+          <Trigger asChild>
+            <button
+              data-testid="select-dropdown-button"
+              className={cn(
+                'pointer-cursor relative flex flex-col rounded-lg border border-black/10 bg-white py-2 pl-3 pr-10 text-left focus:ring-0 focus:ring-offset-0 dark:border-gray-700 dark:bg-gray-800 sm:text-sm',
+                'hover:bg-gray-50 radix-state-open:bg-gray-50 dark:hover:bg-gray-700 dark:radix-state-open:bg-gray-700',
+              )}
+              aria-label={`Select ${title}`}
+              aria-haspopup="false"
+            >
               {' '}
               {showLabel && (
                 <label className="block text-xs text-gray-700 dark:text-gray-500 ">{title}</label>

@@ -51,6 +51,7 @@ function SelectDropDownPop({
   });
   const hasSearchRender = Boolean(searchRender);
   const options = ['gpt-4o-mini']; // Ensure only this model is selectable
+  console.log('Dropdown Options:', options);
 
   return (
     <Root>

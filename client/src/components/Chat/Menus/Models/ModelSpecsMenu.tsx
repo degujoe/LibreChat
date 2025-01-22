@@ -23,14 +23,22 @@ export default function ModelSpecsMenu({ modelSpecs }: { modelSpecs?: TModelSpec
   const assistantMap = useAssistantsMapContext();
 
   const onSelectSpec = (spec: TModelSpec) => {
+    if (spec.name !== 'gpt-4o-mini') {
+        return; // Block selecting any model other than gpt-4o-mini
+    }
+
     const { preset } = spec;
     preset.iconURL = getModelSpecIconURL(spec);
     preset.spec = spec.name;
     const { endpoint } = preset;
     const newEndpoint = endpoint ?? '';
+    
     if (!newEndpoint) {
       return;
     }
+
+    // Keep the existing logic below
+
 
     const {
       template,
